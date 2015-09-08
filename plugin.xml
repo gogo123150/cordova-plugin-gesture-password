@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-gesture-password" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>GesturePassword</name>
+	<description>Cordova Gesture Password Plugin</description>
+	<!-- rule: name 和 filename 首字母小写 -->
+	<js-module name="gesturePassword" src="www/gesturePassword.js">
+		<clobbers target="cordova.plugins.GesturePassword"/>
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="GesturePassword">
+				<!-- cordova-plugin-gesture-password -->
+				<!-- rule: value contains package name-->
+				<!-- rule: class name in value suffix with *Plugin -->
+				<param name="android-package" value="com.yicone.cordova.password.GesturePasswordPlugin"/>
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"/>
+		<!-- rule: filename in src suffix with *Plugin -->
+		<!-- rule: target-dir contains full package path -->
+		<source-file src="src/android/GesturePasswordPlugin.java" target-dir="src/com/yicone/cordova/password"/>
+	</platform>
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="GesturePassword">
+				<!-- rule: value suffix with *Plugin -->
+				<param name="ios-package" value="GesturePasswordPlugin"/>
+			</feature>
+		</config-file>
+		<!-- rule: filename in src suffix with *Plugin -->
+		<source-file src="src/ios/CDVGesturePasswordPlugin.m"/>
+	</platform>
+</plugin>
